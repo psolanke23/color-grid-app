@@ -1,0 +1,42 @@
+<header class="row justify-content-center p-4 bg-dark">
+  <h2 style="color: aliceblue;text-decoration: aqua;"> COLOR SEARCH ENGINE</h2>
+</header>
+<div class="wrapper">
+  <div class="container">
+    <div class="card">
+      <div class="card-header py-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" #inputColor
+                placeholder="Enter Hex Value with (# sign) OR Enter Color Name" ngbPopover="Enter Hex Value with (# sign) OR Enter Color Name" triggers="mouseenter:mouseleave" aria-label="input value"
+                aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary" (click)="colorSelect(inputColor.value)"
+                  type="button">Search</button>
+              </div>
+            </div><br>
+            <div *ngIf="alert">
+              <ngb-alert [type]="alertType" (closed)="alert=false">{{ alertMessage }}</ngb-alert>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div>
+          <h3 *ngIf="serachMessage"> Relative search...</h3>
+        </div>
+        <mat-grid-list cols="5" rowHeight="100px">
+          <mat-grid-tile *ngFor="let colorInfo of colorsInfo;let i =index;" [colspan]="i%2==0?3?1:3:1?1:2"
+            [rowspan]="i%2==0?3?1:2:1?3:2" [style.background]="colorInfo.hex">
+            <div class="text-center">{{colorInfo.hex}}
+              {{colorInfo.name}}</div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <div class="card-footer Text-left">
+        @Copyright all rights reserve by Pruthviraj Solanke.
+      </div>
+    </div>
+  </div>
+</div>
